@@ -19,7 +19,8 @@ class GarraService(Node):
     def garra_callback(self, request, response):
         pwm = self.garra_abierta_pwm if request.data else self.garra_cerrada_pwm
         msg = OverrideRCIn()
-        msg.channels = [0] * 18
+        msg.channels = [0] * 18 #poner 18 canales control en estado 0 (sin overide segun mavros)
+        
         msg.channels[self.canal_garra] = pwm
 
         self.pub.publish(msg)
